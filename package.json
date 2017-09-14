@@ -1,15 +1,24 @@
 {
-  "name": "mongochat",
+  "name": "meanauthapp",
   "version": "1.0.0",
-  "description": "Simple chat app using sockets",
-  "main": "server.js",
+  "description": "Mean stack using authentication",
+  "main": "app.js",
   "scripts": {
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "mongodb": "^2.2.30",
-    "socket.io": "^2.0.3"
-  }
+    "bcrypt": "^1.0.3",
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "cors": "*",
+    "express": "*",
+    "jsonwebtoken": "*",
+    "mongoose": "*",
+    "mongose": "*",
+    "passport": "*",
+    "passport-jwt": "*"
+  },
+  "author": "Rahul Sharma",
+  "license": "ISC"
 }
