@@ -81,7 +81,7 @@ router.post('/authenticate' , (req,res , next) => {
 		// });
 
 		if (user.password != password) {
-        res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+        res.json({ success: false, msg: 'Authentication failed. Wrong password.' });
       } else {
 
         // if user is found and password is right
@@ -93,7 +93,7 @@ var token = jwt.sign({data:user}, config.secret, {
         // return the information including token as JSON
         res.json({
           success: true,
-          message: 'Enjoy your token1!',
+          msg: 'Enjoy your token1!',
           token: token,
           user:{
 			 			id:user._id,
@@ -136,7 +136,7 @@ router.get('/profile',function(req,res,next){
 			// console.log(user);
 			        res.json({
 						          success: true,
-						          message: 'You have entered profile successfully !',
+						          msg: 'You have entered profile successfully !',
 						          
 						        });
 			
