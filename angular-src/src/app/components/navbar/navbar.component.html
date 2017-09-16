@@ -7,9 +7,11 @@
         <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a  [routerLink]="['/']">Home</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a  [routerLink]="['/register']"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a  [routerLink]="['/login']"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-          <li ><a  href="" (click)="onLogoutClick()"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+          <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a  [routerLink]="['/dashboard']"><span class="glyphicon glyphicon-user"></span> Dashboard</a></li>
+          <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a  [routerLink]="['/profile']"><span class="glyphicon glyphicon-log-in"></span> Profile</a></li>
+          <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a  [routerLink]="['/register']"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a  [routerLink]="['/login']"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <li *ngIf="authService.loggedIn()" ><a  href="" (click)="onLogoutClick()"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
       </ul>
     </div>
   </nav>

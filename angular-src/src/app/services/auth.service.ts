@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Http , Headers , Response} from '@angular/http';
 import 'rxjs/add/observable/throw';
+import {tokenNotExpired} from 'angular2-jwt';
 
 // Operators
 import 'rxjs/add/operator/catch';
@@ -54,6 +55,10 @@ export class AuthService {
     const token = localStorage.getItem('id_token');
     console.log(token);
     this.authToken = token;
+  }
+
+  loggedIn(){
+    return tokenNotExpired('id_token');
   }
 
   logout(){
