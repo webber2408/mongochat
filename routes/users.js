@@ -129,7 +129,7 @@ router.get('/profile',function(req,res,next){
 	passport.authenticate('jwt',{session:false} , function(err,user,info){
 		if(err){ return next(err);}
 		if(!user){
-			console.log('User not found ! ');
+			console.log('User not found 1! ');
 			// return res.redirect('/register');
 		}
 		else{
@@ -137,7 +137,13 @@ router.get('/profile',function(req,res,next){
 			        res.json({
 						          success: true,
 						          msg: 'You have entered profile successfully !',
-						          
+								  user:{
+									id:user._id,
+									name:user.name,
+									username:user.username,
+									email:user.email,
+									contact:user.contact
+								}
 						        });
 			
 		}

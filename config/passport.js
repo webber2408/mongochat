@@ -9,16 +9,16 @@ const config = require('../config/database');
 
 module.exports = function(passport){
 	var opts = {};
-	// console.log("hello");
+	console.log("hello");
 	opts.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt');
 	// opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 	opts.secretOrKey = config.secret;
-	// console.log("hello");
+	console.log("hello");
 	passport.use(new JwtStrategy(opts, function(jwt_payload, done) {
-		// console.log("hello");
-		// console.log(jwt_payload);
-		// console.log(jwt_payload._doc);
-		// console.log(jwt_payload.data._id);
+		console.log("hello");
+		console.log(jwt_payload);
+		console.log(jwt_payload._doc);
+		console.log(jwt_payload.data._id);
 			User.findOne({_id: jwt_payload.data._id}, function(err, user) {
 				if(err){
 					// console.log("test1");
