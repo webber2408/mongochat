@@ -11,6 +11,7 @@ module.exports = function(passport){
 	var opts = {};
 	console.log("hello");
 	opts.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt');
+	console.log(opts);
 	// opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 	opts.secretOrKey = config.secret;
 	console.log("hello");
