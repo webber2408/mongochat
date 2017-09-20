@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.sharaddadhich.minorprojectcode_sphere.Activities.ChatUsingSocketIOActivity"
+    android:padding="10dp">
+
+    <EditText
+        android:id="@+id/et_User"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:hint="Enter Your Username"
+        />
+
+
+    <EditText
+        android:id="@+id/et_MessagetoSend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:hint="Enter Your Message to Send"
+        />
+
+    <Button
+        android:id="@+id/btn_SendMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send Message"/>
+
+
+    <TextView
+        android:id="@+id/tv_Messages"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@drawable/rectangle"
+
+        />
+
+</LinearLayout>

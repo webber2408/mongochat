@@ -1,6 +1,7 @@
 package com.example.sharaddadhich.minorprojectcode_sphere.Activities;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -22,7 +23,7 @@ import org.json.JSONObject;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    EditText etName,etUsername,etEmail,etPhoneNo,etPassword,etConfirmPassword;
+    EditText etName,etUsername,etEmail,etPhoneNo,etPassword,etConfirmPassword,etCollege;
     Button btnSubmit;
     ProgressDialog progressDialog;
 
@@ -37,6 +38,7 @@ public class SignUpActivity extends AppCompatActivity {
         etPhoneNo = (EditText) findViewById(R.id.et_Phone_No);
         etPassword = (EditText) findViewById(R.id.et_SignUpPassword);
         etConfirmPassword = (EditText) findViewById(R.id.et_SignUpConfirmPassword);
+        etCollege = (EditText) findViewById(R.id.et_SignUpInstituteName);
         btnSubmit = (Button) findViewById(R.id.btn_Register);
 
         progressDialog = new ProgressDialog(this);
@@ -83,11 +85,22 @@ public class SignUpActivity extends AppCompatActivity {
             etPhoneNo.setError("Please Enter Your Enrollment No.");
             return false;
         }
+        if(TextUtils.isEmpty(etCollege.getText().toString()))
+        {
+            etCollege.requestFocus();
+            etCollege.setError("College Name is mandatory");
+            return false;
+        }
         if(TextUtils.isEmpty(etPassword.getText().toString()))
         {
             etPassword.requestFocus();
             etPassword.setError("Password Cannot be left blank");
             return false;
+        }
+        if(etPassword.getText().toString().length()<8)
+        {
+            etPassword.requestFocus();
+            etPassword.setError("Password Must be 8 Characters Long And 1 Capital Letter");
         }
         if(TextUtils.isEmpty(etConfirmPassword.getText().toString()))
         {
@@ -115,6 +128,7 @@ public class SignUpActivity extends AppCompatActivity {
             json.put("contact",etPhoneNo.getText().toString());
             json.put("password",etPassword.getText().toString());
             json.put("email",etEmail.getText().toString());
+            json.put("institute",etCollege.getText().toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -124,7 +138,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    Toast.makeText(SignUpActivity.this, "Sucess In Sign In", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "Success In Sign In", Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
                     //then we need to fire an intent.
                 } catch (Exception e) {

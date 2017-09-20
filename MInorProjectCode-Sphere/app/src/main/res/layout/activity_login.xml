@@ -24,29 +24,44 @@
         android:layout_width="match_parent"
         android:layout_height="60sp" />
 
-    <EditText
-        android:id="@+id/et_LoginUsername"
-        android:hint="Username"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="22sp"
-        android:maxLength="100"
-        android:textColor="@color/theme_color"
-        android:maxLines="1"
-        />
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/et_LoginUsername"
+            android:hint="Username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:maxLength="100"
+            android:textColor="@color/theme_color"
+            android:maxLines="1"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+
     <android.support.v4.widget.Space
         android:layout_width="match_parent"
         android:layout_height="30sp"/>
 
-    <EditText
-        android:id="@+id/et_LoginPassword"
-        android:textSize="22sp"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:hint="Password"
-        android:maxLines="1"
-        />
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/et_LoginPassword"
+            android:textSize="22sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Password"
+            android:maxLines="1"
+            />
+
+
+    </android.support.design.widget.TextInputLayout>
+
 
 
     <Button
