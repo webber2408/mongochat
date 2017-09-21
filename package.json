@@ -17,7 +17,8 @@
     "mongoose": "*",
     "mongose": "*",
     "passport": "*",
-    "passport-jwt": "*"
+    "passport-jwt": "*",
+    "socket.io": "^1.4.6"
   },
   "author": "Rahul Sharma",
   "license": "ISC"

@@ -14,6 +14,7 @@ import {RouterModule , Routes} from '@angular/router';
 import {AuthGuard} from './guards/auth.guard'
 import {ValidateService} from './services/validate.service';
 import {AuthService} from './services/auth.service';
+import {ChatService} from './services/chat.service';
 import {FlashMessagesModule} from 'angular2-flash-messages';
 
 const appRoutes: Routes = [
@@ -38,7 +39,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,FormsModule,HttpModule,RouterModule.forRoot(appRoutes),FlashMessagesModule
   ],
-  providers: [ValidateService,AuthService,AuthGuard],
+  providers: [ValidateService,AuthService,AuthGuard,ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
