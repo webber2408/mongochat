@@ -34,6 +34,9 @@ public class LoginActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     public static final String TAG = "Login Activity";
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,6 +138,9 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Login Sucessfull", Toast.LENGTH_SHORT).show();
 
                                 //Add an Intent to the Chat Activity
+                                Intent chatintent = new Intent(LoginActivity.this,ChatUsingSocketIOActivity.class);
+                                startActivity(chatintent);
+                                finish();
 
                             }
                         } catch (Exception e) {

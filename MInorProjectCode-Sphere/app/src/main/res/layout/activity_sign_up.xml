@@ -155,6 +155,18 @@
         android:layout_gravity="center"
         />
 
+    <TextView
+        android:id="@+id/tv_AlreadyRegistered"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/theme_color"
+        android:text="Already Registered? LogIn"
+        android:textSize="16sp"
+        android:gravity="center"
+        />
+
+
 
 </LinearLayout>
 

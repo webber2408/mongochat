@@ -3,13 +3,16 @@ package com.example.sharaddadhich.minorprojectcode_sphere.Activities;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.sharaddadhich.minorprojectcode_sphere.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,11 +25,12 @@ import io.socket.emitter.Emitter;
 
 public class ChatUsingSocketIOActivity extends AppCompatActivity {
 
-    io.socket.client.Socket socket;
+    Socket socket;
     EditText etMsg,etUsername;
     Button btnSend;
     TextView tvMessages;
-
+    String z;
+    int flag=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,24 +42,49 @@ public class ChatUsingSocketIOActivity extends AppCompatActivity {
         etUsername = (EditText) findViewById(R.id.et_User);
 
         try {
-            socket = IO.socket("http://chat.socket.io");
+            socket = IO.socket("http://192.168.43.104:4000");
+            Toast.makeText(this, "Socket Assigned", Toast.LENGTH_SHORT).show();
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
 
         socket.connect();
 
-        socket.on("sendMessage", new Emitter.Listener() {
+        socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
             @Override
             public void call(Object... args) {
-                JSONObject recvMsg = (JSONObject) args[0];
+                JSONObject jsonObject  = new JSONObject();
                 try {
-                    String x= recvMsg.getString("name") + ":" + recvMsg.getString("message");
-                    String z= tvMessages.getText().toString() + "\n" + x;
-                    tvMessages.setText(z);
+                    jsonObject.put("name","Sharad");
+                    jsonObject.put("message","Hi there Socket");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+                socket.emit("input",jsonObject);
+
+            }
+        }).on("updatedMessages", new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                Log.d("123123", "call: " + args[0].toString());
+                JSONArray recvmsgarray = (JSONArray) args[0];
+
+                for(int i=0; i<recvmsgarray.length();i++)
+                {
+                    try {
+                        JSONObject recvMsg =  recvmsgarray.getJSONObject(i);
+                        Log.d("123123", "call: " + recvMsg.getString("name"));
+                        String x= recvMsg.getString("name") + ":" + recvMsg.getString("message");
+                        z= z + "\n" + x;
+                        Log.d("987987", "call: \n" + x);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                Log.d("987987", "call: " + z);
+                flag=1;
             }
         });
 
@@ -70,28 +99,28 @@ public class ChatUsingSocketIOActivity extends AppCompatActivity {
                 {
                     JSONObject sendData = new JSONObject();
                     try {
-                        sendData.put("user",etUsername.getText().toString());
+                        sendData.put("name",etUsername.getText().toString());
                         sendData.put("message",etMsg.getText().toString());
 
-                        socket.emit("sendMessage",sendData);
+                        socket.emit("input",sendData);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
-                    String z = tvMessages.getText().toString() + "\n" + etUsername.getText().toString() + ":" + etMsg.getText().toString();
-                    etMsg.setText("");
-                    tvMessages.setText(z);
                 }
             }
         });
 
-        socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
+        tvMessages.post(new Runnable() {
             @Override
-            public void call(Object... args) {
-
+            public void run() {
+                if(flag==1)
+                {
+                    tvMessages.setText("Sharad");
+                    flag=0;
+                }
             }
         });
-
 
     }
 }

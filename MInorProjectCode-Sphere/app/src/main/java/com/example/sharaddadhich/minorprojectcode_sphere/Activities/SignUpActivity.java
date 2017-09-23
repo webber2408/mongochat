@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -26,6 +27,7 @@ public class SignUpActivity extends AppCompatActivity {
     EditText etName,etUsername,etEmail,etPhoneNo,etPassword,etConfirmPassword,etCollege;
     Button btnSubmit;
     ProgressDialog progressDialog;
+    TextView tvLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class SignUpActivity extends AppCompatActivity {
         etConfirmPassword = (EditText) findViewById(R.id.et_SignUpConfirmPassword);
         etCollege = (EditText) findViewById(R.id.et_SignUpInstituteName);
         btnSubmit = (Button) findViewById(R.id.btn_Register);
+        tvLogin = (TextView) findViewById(R.id.tv_AlreadyRegistered);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Registering User...");
@@ -53,6 +56,15 @@ public class SignUpActivity extends AppCompatActivity {
                     progressDialog.setCanceledOnTouchOutside(false);
                     giveJsonData();
                 }
+            }
+        });
+
+        tvLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent gotoLogin = new Intent(SignUpActivity.this,LoginActivity.class);
+                startActivity(gotoLogin);
+                finish();
             }
         });
 
