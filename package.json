@@ -18,6 +18,7 @@
     "mongose": "*",
     "passport": "*",
     "passport-jwt": "*",
+    "rollbar": "^2.2.8",
     "socket.io": "^1.4.6"
   },
   "author": "Rahul Sharma",
