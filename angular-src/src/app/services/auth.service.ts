@@ -38,6 +38,18 @@ export class AuthService {
     headers.append('Content-Type','application/json');
     return this.http.get('http://localhost:3000/jobex/getExperience',{headers: headers}).map(res => res.json());
   }
+
+  addInternship(intern){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    return this.http.post('http://localhost:3000/internship/addInternship',intern , {headers: headers}).map(res => res.json());
+  }
+  
+  getInternship(){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    return this.http.get('http://localhost:3000/internship/getInternship',{headers: headers}).map(res => res.json());
+  }
   
 
   authenticateUser(user){

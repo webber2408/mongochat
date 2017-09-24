@@ -27,7 +27,7 @@ mongoose.connection.on('error',(err)=>{
 const app= express();
 const users = require('./routes/users');
 const jobex = require('./routes/jobex');
-
+const internship = require('./routes/internship');
 const port = 3000;
 
 app.use(cors());
@@ -41,6 +41,7 @@ app.use(express.static(path.join(__dirname , 'public')));
 app.use(bodyParser.json());
 app.use('/users',users);
 app.use('/jobex',jobex);
+app.use('/internship',internship);
 
 //Passport middleware
 app.use(passport.initialize());
