@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="row main">
     <div class="panel-heading">
              <div class="panel-title text-center">
@@ -31,4 +31,38 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+<div class="container bg-info" style="background-color:#353e42;" id="job-page">
+    <div class="row">
+     <div class="col-xs-5 col-form">
+        <form class="form-horizontal" (submit)="onInternshipSubmit()">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <label for="internship" class="cols-sm-2 control-label" style="color:white;">Internships</label>
+                <div class="cols-sm-10">
+                  <div class="input-group">
+                      <textarea id="textarea" class="form-control" [(ngModel)]="internship" name="internship" id="internship"  placeholder="What really matters !"></textarea>
+                    <!-- <input type="textarea" class="form-control" [(ngModel)]="experience" name="experience" id="experience"  placeholder="What really matters !"/> -->
+                  </div>
+                </div>
+              </div>   
+        </div>
+     
+        <div class="col-xs-12" style="padding:10px">   
+          <div class="form-group btnclass">
+              <input type="submit" class="btn btn-success  btns login-button" value="Post Internship">
+              <a class="btn btn-primary btn-lg btns" (click)="getInternship()" role="button">Refresh List</a>
+             </div>
+        </div> 
+        </form>        
+     </div>
+     <div class="col-xs-7 expr" style="padding-top:28px">
+        <div class="internships" *ngFor="let element of intern.reverse()">
+            <div class="newExp">
+                <b><h4 style="font-family: 'Bree Serif', serif;margin-right:20px;">{{element.internship}}</h4></b>
+            </div>
+          </div>   
+     </div>
+    </div>
+    </div>
