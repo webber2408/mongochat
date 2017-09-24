@@ -16,6 +16,8 @@ import {ValidateService} from './services/validate.service';
 import {AuthService} from './services/auth.service';
 import {ChatService} from './services/chat.service';
 import {FlashMessagesModule} from 'angular2-flash-messages';
+import { InternshipsComponent } from './components/internships/internships.component';
+import { JobexComponent } from './components/jobex/jobex.component';
 
 const appRoutes: Routes = [
   {path:'',component:HomeComponent},
@@ -23,7 +25,9 @@ const appRoutes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'dashboard',component:DashboardComponent , canActivate:[AuthGuard]},
   {path:'profile',component:ProfileComponent , canActivate:[AuthGuard]},
-
+  {path:'internships',component:InternshipsComponent , canActivate:[AuthGuard]},
+  {path:'jobex',component:JobexComponent , canActivate:[AuthGuard]}
+   
 ]
 
 @NgModule({
@@ -34,7 +38,9 @@ const appRoutes: Routes = [
     RegisterComponent,
     HomeComponent,
     DashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    InternshipsComponent,
+    JobexComponent
   ],
   imports: [
     BrowserModule,FormsModule,HttpModule,RouterModule.forRoot(appRoutes),FlashMessagesModule

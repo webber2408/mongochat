@@ -26,6 +26,7 @@ mongoose.connection.on('error',(err)=>{
 
 const app= express();
 const users = require('./routes/users');
+const jobex = require('./routes/jobex');
 
 const port = 3000;
 
@@ -39,6 +40,7 @@ app.use(express.static(path.join(__dirname , 'public')));
 // parses / grabs incoming form data etc ...
 app.use(bodyParser.json());
 app.use('/users',users);
+app.use('/jobex',jobex);
 
 //Passport middleware
 app.use(passport.initialize());

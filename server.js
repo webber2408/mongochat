@@ -11,6 +11,7 @@ mongo.connect('mongodb://localhost:27017/meanauth', function(err, db){
 
     // Connect to Socket.io
     client.on('connection', function(socket){
+        console.log(socket.handshake.address)
         let chat = db.collection('chats');
 
         // Create function to send status
