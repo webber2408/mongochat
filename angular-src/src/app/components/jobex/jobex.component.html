@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="row main">
     <div class="panel-heading">
              <div class="panel-title text-center">
@@ -40,4 +40,50 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+
+<div class="container bg-info" style="background-color:#353e42;" id="job-page">
+  <div class="row">
+   <div class="col-xs-5 col-form">
+      <form class="form-horizontal" (submit)="onJobexSubmit()">
+       <div class="col-xs-12">
+          <div class="form-group">
+              <label for="companyName" class="cols-sm-2 control-label" style="color:white;">Company Name</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <input type="text" class="form-control" [(ngModel)]="companyName" name="companyName" id="companyName"  placeholder="Enter CompanyName"/>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="col-xs-12">
+          <div class="form-group">
+              <label for="experience" class="cols-sm-2 control-label" style="color:white;">Give your experience here..</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                    <textarea id="textarea" class="form-control" [(ngModel)]="experience" name="experience" id="experience"  placeholder="What really matters !"></textarea>
+                  <!-- <input type="textarea" class="form-control" [(ngModel)]="experience" name="experience" id="experience"  placeholder="What really matters !"/> -->
+                </div>
+              </div>
+            </div>   
+      </div>
+   
+      <div class="col-xs-12" style="padding:10px">   
+        <div class="form-group btnclass">
+            <input type="submit" class="btn btn-success  btns login-button" value="Post Experience">
+            <a class="btn btn-primary btn-lg btns" (click)="getExperience()" role="button">Refresh List</a>
+           </div>
+      </div> 
+      </form>        
+   </div>
+   <div class="col-xs-7 expr" style="padding-top:28px">
+      <div class="experiences" *ngFor="let element of exp.reverse()">
+          <div class="newExp">
+              <b><h4 style="font-family: 'Bree Serif', serif;margin-right:20px;">{{element.companyName}}:</h4></b>
+              <h5>{{element.experience}}</h5>
+          </div>
+        </div>   
+   </div>
+  </div>
+  </div>

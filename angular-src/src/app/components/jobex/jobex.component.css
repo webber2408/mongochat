@@ -1,0 +1,58 @@
+.col-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+#companyName{
+    width:100%;
+    height:40px;
+}
+.input-group{
+    width:100%;
+}
+#experience{
+    width:100%;
+    height:300px;
+}
+.btnclass{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.btns{
+    width:40%;
+    height:40px;
+    border:none;
+    border-radius:0px;
+    font-size:15px;
+}
+.expr{
+    height:70vh;
+    /* background-color: white; */
+    overflow-y: scroll;
+}
+.newExp{
+    width:90%;
+    background-color:white;
+    margin-bottom:4px;
+    height:50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left:20px;
+    font-family: 'Courgette', cursive;
+}
+.expr::-webkit-scrollbar {
+    width: 1em;
+  }
+  
+  .expr::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  }
+  
+  .expr::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+  }
