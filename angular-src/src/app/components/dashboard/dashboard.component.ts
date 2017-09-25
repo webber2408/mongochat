@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ChatService} from '../../services/chat.service';
+import {AuthService} from '../../services/auth.service';
 import * as io from 'socket.io-client';
 
 @Component({
@@ -15,8 +16,8 @@ export class DashboardComponent implements OnInit {
   username;
   //status;
   //statusDefault:"";
-  socket;
-   constructor(private chatService:ChatService) {}
+  private socket;
+   constructor(private chatService:ChatService,private authService:AuthService) {}
   
   //  setStatus(s){
   //     status = s;
@@ -38,7 +39,15 @@ export class DashboardComponent implements OnInit {
   // this.chatService.getMessages();
   // console.log(this.messages);
   }
-
+  onReloadChats(){
+    this.chatService.getMessages().subscribe(message => {
+      console.log(message);
+       //this.messages=[];
+       this.messages.push(message);
+       //this.messages=[];
+       //console.log(this.messages);
+     })
+  }
   ngOnInit() {
     //this.socket = io.connect('http://127.0.0.1:4000');
     // if(this.socket == undefined){
@@ -48,15 +57,25 @@ export class DashboardComponent implements OnInit {
     //   console.log(" connect to socket!");
     // }
     // console.log(this.messages);
-    // if(this.messages != undefined){
-    this.chatService.getMessages().subscribe(message => {
-      console.log(message);
-      //this.messages=[];
-      this.messages.push(message);
-      //this.messages=[];
-      console.log(this.messages);
-    })
-  //}
+    if(this.messages != undefined){
+      this.chatService.getMessages().subscribe(message => {
+        console.log(message);
+         //this.messages=[];
+         this.messages.push(message);
+         //this.messages=[];
+         //console.log(this.messages);
+       })
+  }
+  this.authService.getProfile().subscribe(profile => {
+    //console.log(profile);
+    
+    this.username = profile.user.name;
+ },
+err =>  {
+   console.log(err);
+   return false;
+});
+    
   }
 
   // Let's unsubscribe our Observable

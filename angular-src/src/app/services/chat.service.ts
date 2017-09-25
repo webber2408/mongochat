@@ -27,11 +27,11 @@ export class ChatService {
 
   getMessages() {
     let observable = new Observable(observer => {
-      console.log("hello");
+     // console.log("hello");
       this.socket = io.connect('http://127.0.0.1:4000');
       //console.log(this.socket);
       this.socket.on('updatedMessages', (data) => {
-        console.log(data);
+       console.log(data);
              if(data.length){
                 for(let x = 0;x < data.length;x++){
                     // Build out message div
@@ -43,7 +43,7 @@ export class ChatService {
                     //}
                 }
             }
-            console.log(this.messages);
+            //console.log(this.messages);
            observer.next(this.messages);     
       });
       return () => {
@@ -57,14 +57,14 @@ export class ChatService {
     //this.getMessages();
     // Make sure the "add-message" is written here because this is referenced in on() in our server
     //this.socket = io.connect('http://127.0.0.1:4000');
-    console.log(message+username);
+    //console.log(message+username);
   // console.log(this.socket);
   let data={
     "message":message,
     "username":username
   };
-  console.log(data);
-  console.log(this.socket);
+  //console.log(data);
+  //console.log(this.socket);
     this.socket.emit('input',data);   
   }
 

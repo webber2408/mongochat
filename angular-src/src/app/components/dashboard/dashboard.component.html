@@ -13,10 +13,13 @@
               <div class="col-md-12 offset-md-3 col-sm-12 main">
                   <!-- <div id="status">{{status}}</div> -->
                   <div id="chat">
-                      <input type="text" id="username" [(ngModel)]="username" class="form-control" placeholder="Enter name...">
+                    <p class="username">Hello {{username}} !</p>
+                    <p class="username">Resolve errors by asking professionals </p>
+                      <!-- <input type="text" id="username" [(ngModel)]="username" class="form-control" placeholder="Enter name..."> -->
                       <br>
                       <textarea id="textarea" class="form-control enterMessage" [(ngModel)]="message" placeholder="Enter message..."></textarea>
                       <button class="btn btn-success" id="submitMessage" (click)="sendMessage()">Send Message</button>
+                      <!-- <button class="btn btn-success" id="reloadChats" (click)="onReloadChats()">Reload Chats</button> -->
                   </div>
                   <div class="card">
                     <div id="messages" *ngFor="let message of messages" class="">

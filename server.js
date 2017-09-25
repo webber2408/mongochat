@@ -45,12 +45,12 @@ mongo.connect('mongodb://localhost:27017/meanauth', function(err, db){
 
         // Handle input events
         socket.on('input', function(data){
-            console.log(data);
+            //console.log(data);
             // console.log(data.username);
             let name = data.username;
             let message = data.message;
-            console.log("hello");
-            console.log(name+message);
+            //console.log("hello");
+            //console.log(name+message);
             // Check for name and message
             if(name == '' || message == ''){
                 // Send error status
