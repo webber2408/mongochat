@@ -5,6 +5,7 @@
       </div>
       <ul class="nav navbar-nav">
         <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a  [routerLink]="['/']">Home</a></li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a  [routerLink]="['/about']">About Us</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
           <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a  [routerLink]="['/dashboard']"><span class="glyphicon glyphicon-user"></span> Dashboard</a></li>
