@@ -3,6 +3,8 @@ package com.example.sharaddadhich.minorprojectcode_sphere.Activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -14,7 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.sharaddadhich.minorprojectcode_sphere.POJO.Jobx;
+import com.example.sharaddadhich.minorprojectcode_sphere.Adapters.DisplayChatRecyclerViewAdapter;
+import com.example.sharaddadhich.minorprojectcode_sphere.POJO.ChatData;
 import com.example.sharaddadhich.minorprojectcode_sphere.R;
 
 import org.json.JSONArray;
@@ -22,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
@@ -33,10 +37,12 @@ public class ChatUsingSocketIOActivity extends AppCompatActivity {
     Socket socket;
     EditText etMsg,etUsername;
     Button btnSend;
-    TextView tvMessages;
     String z;
     int flag=1;
+    DisplayChatRecyclerViewAdapter displayChatRecyclerViewAdapter;
 
+    ArrayList<ChatData> chat = new ArrayList<>();
+    RecyclerView rvMessages;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -51,9 +57,13 @@ public class ChatUsingSocketIOActivity extends AppCompatActivity {
                 finish();
                 Intent x = new Intent(ChatUsingSocketIOActivity.this,InternshipsActivity.class);
                 startActivity(x);
+                return true;
             case R.id.menu_jobx:
                 Intent gotojobx = new Intent(ChatUsingSocketIOActivity.this,JobxActivity.class);
                 startActivity(gotojobx);
+                return true;
+            case R.id.menu_AboutUs:
+                //Do Nothing till now
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -64,10 +74,13 @@ public class ChatUsingSocketIOActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_using_socket_io);
 
+        rvMessages = (RecyclerView) findViewById(R.id.rv_ChatDisplay);
         etMsg = (EditText) findViewById(R.id.et_MessagetoSend);
-        tvMessages = (TextView) findViewById(R.id.tv_Messages);
         btnSend = (Button) findViewById(R.id.btn_SendMessage);
         etUsername = (EditText) findViewById(R.id.et_User);
+        displayChatRecyclerViewAdapter = new DisplayChatRecyclerViewAdapter(chat,this);
+        rvMessages.setLayoutManager(new LinearLayoutManager(this));
+        rvMessages.setAdapter(displayChatRecyclerViewAdapter);
 
         try {
             socket = IO.socket("http://192.168.43.104:4000");
@@ -103,9 +116,9 @@ public class ChatUsingSocketIOActivity extends AppCompatActivity {
                     try {
                         JSONObject recvMsg =  recvmsgarray.getJSONObject(i);
                         Log.d("123123", "call: " + recvMsg.getString("name"));
-                        String x= recvMsg.getString("name") + ":" + recvMsg.getString("message");
-                        z= z + "\n" + x;
-                        Log.d("987987", "call: \n" + x);
+                        ChatData thisdata = new ChatData(recvMsg.getString("name"),recvMsg.getString("message"));
+                        chat.add(thisdata);
+                        displayChatRecyclerViewAdapter.UpdateChat(chat);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -136,13 +149,6 @@ public class ChatUsingSocketIOActivity extends AppCompatActivity {
                     }
 
                 }
-            }
-        });
-
-        tvMessages.post(new Runnable() {
-            @Override
-            public void run() {
-                tvMessages.setText(z);
             }
         });
 

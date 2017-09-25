@@ -12,5 +12,10 @@
         android:id="@+id/menu_jobx"
         app:showAsAction="never"/>
 
+    <item
+        android:title="AboutUs"
+        android:id="@+id/menu_AboutUs"
+        app:showAsAction="never"/>
+
 
 </menu>

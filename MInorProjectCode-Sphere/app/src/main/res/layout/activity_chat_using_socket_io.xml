@@ -32,12 +32,14 @@
         android:text="Send Message"/>
 
 
-    <TextView
-        android:id="@+id/tv_Messages"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_ChatDisplay"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:background="@drawable/rectangle"
+        android:background="@drawable/rectangle">
 
-        />
+
+    </android.support.v7.widget.RecyclerView>
+
 
 </LinearLayout>
