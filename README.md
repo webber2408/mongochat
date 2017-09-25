@@ -1,14 +1,14 @@
 # CodeSphere
 A developer platform for aspiring developers within a particular university to get connected with fellow developers expert in the same field . 
 
-#Start Project
+# Start Project
 
-#Start Angular 2 
+# Start Angular 2 
 npm install 
 ng serve 
 
-#Start NodeJs 
+# Start NodeJs 
 npm start
 
-#Start Socket.io
+# Start Socket.io
 node server.js
