@@ -4,11 +4,19 @@ A developer platform for aspiring developers within a particular university to g
 # Start Project
 
 # Start Angular 2 
+```
 npm install 
-ng serve 
+```
+```
+ng serve
+```
 
 # Start NodeJs 
+```
 npm start
+```
 
 # Start Socket.io
+```
 node server.js
+```
