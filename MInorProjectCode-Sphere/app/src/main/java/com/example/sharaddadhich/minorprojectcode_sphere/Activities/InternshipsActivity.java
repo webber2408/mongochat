@@ -1,5 +1,6 @@
 package com.example.sharaddadhich.minorprojectcode_sphere.Activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,7 +44,7 @@ public class InternshipsActivity extends AppCompatActivity {
         btnPostInternship = (Button) findViewById(R.id.btn_PostInternship);
         btnRefreshList = (Button) findViewById(R.id.btn_RefreshInternship);
 
-        rvInternships.setLayoutManager(new LinearLayoutManager(this));
+        rvInternships.setLayoutManager(new LinearLayoutManager(this,1,true));
 
         internshipRecyclerViewAdapter = new InternshipRecyclerViewAdapter(internshipses,this);
         rvInternships.setAdapter(internshipRecyclerViewAdapter);
@@ -58,6 +59,15 @@ public class InternshipsActivity extends AppCompatActivity {
             }
         });
 
+        btnPostInternship.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i =new Intent(InternshipsActivity.this,WriteInternshipActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
 
 
 
@@ -66,9 +76,7 @@ public class InternshipsActivity extends AppCompatActivity {
 
     public void getJsonData(){
 
-        final JSONObject jsonObject = new JSONObject();
-
-        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://192.168.43.104:3000/interships/getInterships", null,
+        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://192.168.43.104:3000/internship/getInternship", null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -76,10 +84,12 @@ public class InternshipsActivity extends AppCompatActivity {
                             if (response == null) {
                                 Toast.makeText(InternshipsActivity.this, "Null Response", Toast.LENGTH_SHORT).show();
                             } else {
-                                JSONArray jsonArray = new JSONArray();
                                 try {
-                                    jsonArray = jsonObject.getJSONArray("results");
+                                    Log.d("234234", "onResponse: " + response.toString());
+                                    JSONArray jsonArray = response.getJSONArray("results");
+                                    Log.d("234234", "onResponse: " + jsonArray.toString());
                                     for (int i = 0; i < jsonArray.length(); i++) {
+                                        Log.d("234235", "onResponse: " + jsonArray.getJSONObject(i).toString());
                                         JSONObject j = jsonArray.getJSONObject(i);
                                         String inte = j.getString("internship");
                                         Internships intern = new Internships(inte);
@@ -102,6 +112,8 @@ public class InternshipsActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Log.d("123123", "onErrorResponse: " + "Error in Fetching data=====");
+                error.printStackTrace();
                 Toast.makeText(InternshipsActivity.this, "Error in Fetching Data", Toast.LENGTH_SHORT).show();
             }
         }

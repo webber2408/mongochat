@@ -29,7 +29,9 @@
             android:value="ocr" />
 
         <activity android:name=".Activities.InternshipsActivity" />
-        <activity android:name=".Activities.WriteInternshipActivity"></activity>
+        <activity android:name=".Activities.WriteInternshipActivity" />
+        <activity android:name=".Activities.JobxActivity" />
+        <activity android:name=".Activities.WriteJobxActivity"></activity>
     </application>
 
 </manifest>

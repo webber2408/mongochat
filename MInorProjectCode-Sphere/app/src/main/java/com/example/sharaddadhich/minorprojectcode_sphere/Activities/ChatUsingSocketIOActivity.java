@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sharaddadhich.minorprojectcode_sphere.POJO.Jobx;
 import com.example.sharaddadhich.minorprojectcode_sphere.R;
 
 import org.json.JSONArray;
@@ -45,9 +46,17 @@ public class ChatUsingSocketIOActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent gotointernship = new Intent(ChatUsingSocketIOActivity.this,InternshipsActivity.class);
-        startActivity(gotointernship);
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.menu_internships:
+                finish();
+                Intent x = new Intent(ChatUsingSocketIOActivity.this,InternshipsActivity.class);
+                startActivity(x);
+            case R.id.menu_jobx:
+                Intent gotojobx = new Intent(ChatUsingSocketIOActivity.this,JobxActivity.class);
+                startActivity(gotojobx);
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -80,7 +89,7 @@ public class ChatUsingSocketIOActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                socket.emit("input",jsonObject);
+//                socket.emit("input",jsonObject);
 
             }
         }).on("updatedMessages", new Emitter.Listener() {

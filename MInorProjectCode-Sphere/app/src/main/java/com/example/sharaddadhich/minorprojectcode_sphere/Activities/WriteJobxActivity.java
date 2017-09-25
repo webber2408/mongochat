@@ -20,77 +20,77 @@ import com.example.sharaddadhich.minorprojectcode_sphere.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class WriteInternshipActivity extends AppCompatActivity {
+public class WriteJobxActivity extends AppCompatActivity {
 
-    Button btnSubmitInternship;
-    EditText etDetails;
+    EditText etCompany,etExperience;
+    Button btnPostExperience;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_write_internship);
+        setContentView(R.layout.activity_write_jobx);
 
-        btnSubmitInternship = (Button) findViewById(R.id.btn_SubmitInternship);
-        etDetails = (EditText) findViewById(R.id.et_writeInternship);
+        etCompany = (EditText) findViewById(R.id.et_writeCompanyName);
+        etExperience = (EditText) findViewById(R.id.et_writeExperience);
+        btnPostExperience = (Button) findViewById(R.id.btn_SubmitExperience);
 
 
-        btnSubmitInternship.setOnClickListener(new View.OnClickListener() {
+        btnPostExperience.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(checkdata())
                 {
                     JSONObject jsonObject = new JSONObject();
-                    try {
-                        jsonObject.put("internship",etDetails.getText().toString());
 
-                        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://192.168.43.104:3000/internship/addInternship",
+                    try {
+                        jsonObject.put("companyName",etCompany.getText().toString());
+                        jsonObject.put("experience",etExperience.getText().toString());
+
+                        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://192.168.43.104:3000/jobex/addExperience",
                                 jsonObject,
                                 new Response.Listener<JSONObject>() {
                                     @Override
                                     public void onResponse(JSONObject response) {
-
-                                        Toast.makeText(WriteInternshipActivity.this, "Internship Posted", Toast.LENGTH_SHORT).show();
-                                        Intent i = new Intent(WriteInternshipActivity.this,InternshipsActivity.class);
-                                        startActivity(i);
+                                        Toast.makeText(WriteJobxActivity.this, "Experience Posted", Toast.LENGTH_SHORT).show();
+                                        Intent gotoJob = new Intent(WriteJobxActivity.this,JobxActivity.class);
+                                        startActivity(gotoJob);
                                         finish();
                                     }
                                 },
                                 new Response.ErrorListener() {
                                     @Override
                                     public void onErrorResponse(VolleyError error) {
-                                        Toast.makeText(WriteInternshipActivity.this, "Unable to Post Internship", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(WriteJobxActivity.this, "Error in Posting Experience", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                         );
 
-                        RequestQueue request = Volley.newRequestQueue(WriteInternshipActivity.this);
-                        request.add(jsonObjectRequest);
+                        RequestQueue requestQuee = Volley.newRequestQueue(WriteJobxActivity.this);
+                        requestQuee.add(jsonObjectRequest);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Toast.makeText(WriteInternshipActivity.this, "Unable to connect to server", Toast.LENGTH_SHORT).show();
                     }
                 }
+
                 else
                 {
-                    etDetails.setError("Please Provide Some Data");
+                    Toast.makeText(WriteJobxActivity.this, "Please Provide Proper Data", Toast.LENGTH_SHORT).show();
                 }
-
-
-                Intent i = new Intent(WriteInternshipActivity.this,InternshipsActivity.class);
-                startActivity(i);
-                finish();
-
             }
-        }
-        );
-
+        });
 
     }
 
+
+
     public boolean checkdata()
     {
-        if(TextUtils.isEmpty(etDetails.getText().toString()))
+        if(TextUtils.isEmpty(etCompany.getText().toString()))
+        {
+            return false;
+        }
+        else if(TextUtils.isEmpty(etExperience.getText().toString()))
         {
             return false;
         }
