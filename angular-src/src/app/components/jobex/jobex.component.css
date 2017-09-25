@@ -29,7 +29,8 @@
     font-size:15px;
 }
 .expr{
-    height:70vh;
+    margin-top: 28px;
+    height:66vh;
     /* background-color: white; */
     overflow-y: scroll;
 }
