@@ -3,7 +3,7 @@
     package="com.example.sharaddadhich.minorprojectcode_sphere">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -22,12 +22,14 @@
         <activity android:name=".Activities.SignUpActivity" />
         <activity android:name=".Activities.IdCardActivity" />
         <activity android:name=".Activities.ShowCommunityActivity" />
-        <activity android:name=".Activities.ChatUsingSocketIOActivity">
+        <activity android:name=".Activities.ChatUsingSocketIOActivity" />
 
-        </activity>
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="ocr" />
 
-        <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES"
-            android:value="ocr"/>
+        <activity android:name=".Activities.InternshipsActivity" />
+        <activity android:name=".Activities.WriteInternshipActivity"></activity>
     </application>
 
 </manifest>

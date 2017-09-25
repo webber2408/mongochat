@@ -1,9 +1,13 @@
 package com.example.sharaddadhich.minorprojectcode_sphere.Activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +35,21 @@ public class ChatUsingSocketIOActivity extends AppCompatActivity {
     TextView tvMessages;
     String z;
     int flag=1;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent gotointernship = new Intent(ChatUsingSocketIOActivity.this,InternshipsActivity.class);
+        startActivity(gotointernship);
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +86,7 @@ public class ChatUsingSocketIOActivity extends AppCompatActivity {
         }).on("updatedMessages", new Emitter.Listener() {
             @Override
             public void call(Object... args) {
-                Log.d("123123", "call: " + args[0].toString());
+                Log.d("123123", "call: " + args[0].toString() );
                 JSONArray recvmsgarray = (JSONArray) args[0];
 
                 for(int i=0; i<recvmsgarray.length();i++)
@@ -114,11 +133,7 @@ public class ChatUsingSocketIOActivity extends AppCompatActivity {
         tvMessages.post(new Runnable() {
             @Override
             public void run() {
-                if(flag==1)
-                {
-                    tvMessages.setText("Sharad");
-                    flag=0;
-                }
+                tvMessages.setText(z);
             }
         });
 

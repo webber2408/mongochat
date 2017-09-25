@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundcolor"
+    tools:context="com.example.sharaddadhich.minorprojectcode_sphere.Activities.WriteInternshipActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Post Your Internship"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        android:textSize="26sp"
+        android:fontFamily="cursive"
+        />
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:id="@+id/et_writeInternship"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.48"
+        android:hint="Write About Internship..."
+        android:gravity="top"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:background="@drawable/rectangle"
+        />
+    <Button
+        android:layout_marginTop="10dp"
+        android:id="@+id/btn_SubmitInternship"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/postbutton"
+        android:textColor="@android:color/white"
+        android:text="Post"
+        android:layout_gravity="center"
+        />
+
+
+</LinearLayout>
